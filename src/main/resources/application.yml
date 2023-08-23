@@ -1,0 +1,49 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: user-center
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/partner
+  session:
+    timeout: 86400
+    store-type: redis
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  redis:
+    port: 6379
+    host: localhost
+    database: 0
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+    session:
+      cookie:
+        domain: localhost
+        same-site: none
+        secure: true
+
+# mybatis-plus default automatically convert camelCase and underscores
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: isDelete # Entity field name for global tombstone
+      logic-delete-value: 1 # Logical removed value (default 1)
+      logic-not-delete-value: 0 # Logical non-removed values (default 0)
+
+
+
+
